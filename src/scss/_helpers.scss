@@ -1,0 +1,58 @@
+@import "~compass-mixins/lib/compass/css3";
+@import "functions";
+
+.text {
+  &-center {
+    text-align: center;
+  }
+
+  &-right {
+    text-align: right;
+  }
+
+  &-left {
+    text-align: left;
+  }
+}
+
+.pull {
+  &-left {
+    float: left;
+  }
+
+  &-right {
+    float: right;
+  }
+}
+
+.title {
+  font-size: 28px;
+  font-weight: normal;
+}
+
+
+.default-progress-spinner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  @include display-flex;
+  @include justify-content(center);
+  @include flex-direction(column);
+  @include align-items(center);
+  background: rgba(255, 255, 255, 0.4);
+  z-index: 19;
+}
+
+
+.dp {
+  &-none {
+    display: none;
+  }
+}
+
+.errors-list {
+  color: red;
+  font-size: 75%;
+}

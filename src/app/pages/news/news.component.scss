@@ -1,0 +1,28 @@
+@import "~compass-mixins/lib/compass/css3";
+@import "functions";
+
+:host {
+  .news {
+    @include display-flex;
+
+    &__list {
+      @include display-flex;
+      @include flex-wrap(wrap);
+      @include justify-content(space-between);
+      padding-right: 70px;
+
+      .news-card {
+        width: 48%;
+        margin-bottom: 50px;
+      }
+    }
+
+    &__sidebar {
+      @include flex(0 0 300px);
+
+      .news-card {
+        margin-bottom: 40px;
+      }
+    }
+  }
+}

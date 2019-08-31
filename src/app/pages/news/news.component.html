@@ -1,0 +1,16 @@
+<app-layout>
+  <p class="text-right">
+    <button (click)='onAddNews()' mat-raised-button color='primary'>Add news</button>
+  </p>
+  <div class="news">
+    <div class="news__list">
+      <app-news-card (editChange)='onEdit($event)' (deleteChange)='onDelete($event)' [isAuthed]='isAuthed'
+        class="news-card" *ngFor='let item of items$ | async' [item]='item'>
+      </app-news-card>
+    </div>
+    <div class="news__sidebar" *ngIf='topItems$ | async as items'>
+      <app-news-card (editChange)='onEdit($event)' (deleteChange)='onDelete($event)' [isAuthed]='isAuthed'
+        class="news-card" *ngFor='let item of items' [item]='item'></app-news-card>
+    </div>
+  </div>
+</app-layout>

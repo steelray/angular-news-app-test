@@ -1,0 +1,13 @@
+<header>
+  <a routerLink='/' class="logo">NewsApp</a>
+  <nav class="main-nav">
+    <ul>
+      <li><a routerLinkActive='active' [routerLink]='["/news"]'>News</a></li>
+      <li *ngIf='profile'><a routerLinkActive='active' [routerLink]='["/news-statics"]'>News statics</a></li>
+    </ul>
+  </nav>
+  <div class="auth-link text-right">
+    <a [routerLink]='' *ngIf='!profile' (click)='openLoginDialog($event)'>Sign in</a>
+    <a [routerLink]='' *ngIf='profile' (click)='onLogout($event)'>{{profile.fio}} <mat-icon>exit_to_app</mat-icon></a>
+  </div>
+</header>

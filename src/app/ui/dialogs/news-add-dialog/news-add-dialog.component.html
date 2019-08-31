@@ -1,0 +1,68 @@
+<h2 class="title text-center" mat-dialog-title>Add news</h2>
+<div class="default-progress-spinner" *ngIf='isLoading'>
+  <mat-progress-spinner [mode]="'indeterminate'">
+  </mat-progress-spinner>
+</div>
+<ul *ngIf='errors' class="errors-list">
+  <li *ngFor='let error of errors'>
+    {{error.field}}: {{error.message}}
+  </li>
+</ul>
+<div class="mat-dialog-content">
+  <form [formGroup]="form" (submit)="onSubmit($event)">
+    <mat-form-field class="default-form-field">
+      <input matInput formControlName="title" (blur)='setSlug(title.value)' placeholder="Title" type="text" />
+      <mat-error *ngIf='title.errors && title.errors.minlength'>min length must be
+        {{title.errors.minlength.requiredLength}}. Actual
+        length is {{title.errors.minlength.actualLength}}</mat-error>
+      <mat-error *ngIf='title.errors && title.errors.maxlength'>max length must be
+        {{title.errors.maxlength.requiredLength}}. Actual
+        length is {{title.errors.maxlength.actualLength}}</mat-error>
+      <mat-error *ngIf='title.errors && title.errors.required'>title is required</mat-error>
+    </mat-form-field>
+    <mat-form-field class="default-form-field">
+      <input matInput formControlName="slug" placeholder="Slug(optional)" type="text" />
+      <mat-error *ngIf='slug.errors && slug.errors.pattern'>only latin characters allowed</mat-error>
+      <mat-error *ngIf='slug.errors && slug.errors.minlength'>min length must be
+        {{slug.errors.minlength.requiredLength}}. Actual
+        length is {{slug.errors.minlength.actualLength}}</mat-error>
+      <mat-error *ngIf='slug.errors && slug.errors.maxlength'>max length must be
+        {{title.errors.maxlength.requiredLength}}. Actual
+        length is {{title.errors.maxlength.actualLength}}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="default-form-field">
+      <input matInput formControlName="image" placeholder="Image" type="text" />
+      <mat-error *ngIf='image.errors && image.errors.pattern'>"image" must be an url address to media
+        source
+      </mat-error>
+      <mat-error *ngIf='image.errors && image.errors.required'>image is required</mat-error>
+    </mat-form-field>
+    <mat-form-field class="default-form-field">
+      <input matInput formControlName="description" placeholder="Description" type="text" />
+      <mat-error *ngIf='description.errors && description.errors.minlength'>min length must be
+        {{description.errors.minlength.requiredLength}}. Actual
+        length is {{description.errors.minlength.actualLength}}</mat-error>
+      <mat-error *ngIf='description.errors && description.errors.maxlength'>max length must be
+        {{description.errors.maxlength.requiredLength}}. Actual
+        length is {{description.errors.maxlength.actualLength}}</mat-error>
+      <mat-error *ngIf='description.errors && description.errors.required'>description is
+        required
+      </mat-error>
+    </mat-form-field>
+
+    <div class="default-form-field">
+      <ckeditor [editor]="Editor" formControlName='text'>
+      </ckeditor>
+      <div *ngIf='isSubmited && text.errors' class="mat-form-field-subscript-wrapper">
+        <mat-error *ngIf='text.errors && text.errors.minlength'>min length must be
+          {{text.errors.minlength.requiredLength}}. Actual
+          length is {{text.errors.minlength.actualLength}}</mat-error>
+        <mat-error *ngIf='text.errors && text.errors.required'>text is required
+        </mat-error>
+      </div>
+    </div>
+    <div class="text-center">
+      <button mat-raised-button color="primary">Submit</button>
+    </div>
+  </form>
+</div>

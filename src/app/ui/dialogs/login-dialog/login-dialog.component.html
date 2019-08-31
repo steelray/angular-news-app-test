@@ -1,0 +1,26 @@
+<h3 mat-dialog-title>Sign in</h3>
+<div mat-dialog-content>
+  <form [formGroup]='form' (submit)='onSubmit()'>
+    <mat-form-field class="default-form-field">
+      <input matInput placeholder="Username" formControlName='username'>
+      <mat-error *ngIf='username.touched && username.errors && username.errors.required'>username is required
+      </mat-error>
+      <mat-error *ngIf='username.touched && username.errors && username.errors.pattern'>username is not valid
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="default-form-field">
+      <input matInput placeholder="Password" type="password" formControlName='password'>
+      <mat-error *ngIf='password.touched && password.errors && password.errors.required'>password is required
+      </mat-error>
+      <mat-error *ngIf='password.touched && password.errors && password.errors.pattern'>password is not valid
+      </mat-error>
+
+      <mat-error *ngIf='password.touched && password.errors && password.errors.invalidData'>username or password is
+        incorrect</mat-error>
+    </mat-form-field>
+    <div class="text-center" mat-dialog-actions>
+      <a routerLink='' mat-raised-button color='warn' (click)='onCancel($event)'>Cancel</a>
+      <button mat-raised-button color='primary'>Submit</button>
+    </div>
+  </form>
+</div>

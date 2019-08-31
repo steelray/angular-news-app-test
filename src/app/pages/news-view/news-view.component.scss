@@ -1,0 +1,40 @@
+@import '~compass-mixins/lib/compass/css3';
+@import 'functions';
+
+:host {
+  .news {
+    &-title {
+      font-size: 40px;
+      font-weight: normal;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    &-details {
+      @include clearfix;
+      margin-bottom: 40px;
+
+      >* {
+        @include display-flex(inline-flex);
+        vertical-align: middle;
+        font-size: 13px;
+        color: #999;
+
+        &:not(:last-child) {
+          margin-right: 20px;
+        }
+      }
+    }
+
+    &-text {
+      @include clearfix;
+    }
+
+    &-image {
+      float: left;
+      max-width: 35%;
+      display: block;
+      margin: 0 35px 5px 0;
+    }
+  }
+}

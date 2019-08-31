@@ -1,0 +1,19 @@
+  <img [src]="item.image" alt="item.title">
+  <div class="news-card__body">
+    <a [routerLink]='["/news", item.slug]' class="news-card__title">{{item.title}}</a>
+    <div class="news-card__description">{{item.description}}</div>
+    <div class="news-card__date">Created At: {{item.createdAt | date:'dd.mm.yyyy h:mm'}}</div>
+    <div class="text-right news-card__actions">
+      <div class="pull-left" *ngIf='isAuthed'>
+        <span class="news-card__actions__item" (click)='onEdit(item.slug)' matTooltip='edit...'>
+          <mat-icon>edit</mat-icon>
+        </span>
+        <span class="news-card__actions__item" (click)='onDelete(item.slug)' matTooltip='delete...'>
+          <mat-icon>delete</mat-icon>
+        </span>
+      </div>
+      <a [routerLink]='["/news", item.slug]' class="news-card__learn" matTooltip='more...'>
+        <mat-icon>arrow_forward</mat-icon>
+      </a>
+    </div>
+  </div>

@@ -1,0 +1,81 @@
+@import "~compass-mixins/lib/compass/css3";
+@import "functions";
+
+:host {
+  &.news-card {
+    @include display-flex(inline-flex);
+    vertical-align: top;
+    @include flex-direction(column);
+
+    img {
+      display: block;
+    }
+
+    &:hover {
+      .news-card__body {
+        border-color: orange;
+      }
+    }
+
+
+  }
+
+  .news-card {
+    &__body {
+      padding: 15px;
+      @include transition(border-color 0.3s);
+
+      border: {
+        right: 1px solid #f1f1f1;
+        left: 1px solid #f1f1f1;
+        bottom: 1px solid #f1f1f1;
+      }
+
+      ;
+
+    }
+
+    &__title {
+      color: #444444;
+      font-size: 17px;
+      @include dec-n;
+      margin-bottom: 5px;
+    }
+
+    &__description {
+      font-size: 15px;
+      color: #888888;
+      margin-bottom: 15px;
+      clear: both;
+    }
+
+    &__learn {
+      color: orange;
+      @include dec-n;
+      font-size: 14px;
+    }
+
+    &__date {
+      color: #9c9c9c;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    &__actions {
+      @include clearfix;
+
+      &__item {
+        cursor: pointer;
+      }
+
+      .mat-icon {
+        color: #666;
+
+        &:hover {
+          color: #000000
+        }
+      }
+    }
+  }
+
+}

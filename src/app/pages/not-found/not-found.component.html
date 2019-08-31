@@ -1,0 +1,7 @@
+<h1 [ngSwitch]='code'>
+  {{code}}
+  <span *ngSwitchCase='404'>Page not found</span>
+  <span *ngSwitchCase='403'>Forbidden</span>
+  <span *ngSwitchCase='405'>Method not allowed</span>
+</h1>
+<p>go to <a routerLink='/'>main</a> page</p>

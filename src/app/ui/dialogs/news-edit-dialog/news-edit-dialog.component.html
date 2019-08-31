@@ -1,0 +1,59 @@
+<h2 class="title text-center" mat-dialog-title>Edit news</h2>
+
+<div class="default-progress-spinner" *ngIf='isLoading'>
+  <mat-progress-spinner [mode]="'indeterminate'">
+  </mat-progress-spinner>
+</div>
+<ul *ngIf='errors' class="errors-list">
+  <li *ngFor='let error of errors'>
+    {{error.field}}: {{error.message}}
+  </li>
+</ul>
+<div mat-dialog-content class="mat-dialog-content">
+  <form #form='ngForm' (ngSubmit)="onSubmit(form.form)">
+    <mat-form-field class="default-form-field">
+      <input required minlength="3" maxlength="125" matInput type="text" name="title" [(ngModel)]='model.title'
+        #title='ngModel'>
+      <mat-error *ngIf='title.invalid && title.errors.required'>title is required</mat-error>
+      <mat-error *ngIf='title.invalid && title.errors.minlength'>min length
+        {{title.errors.minlength.requiredLength}}. current length is {{title.errors.minlength.actualLength}}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="default-form-field">
+      <input minlength="3" maxlength="125" matInput type="text" name="slug" [(ngModel)]='model.slug' #slug='ngModel'>
+      <mat-error *ngIf='slug.invalid && slug.errors.minlength'>min length
+        {{slug.errors.minlength.requiredLength}}. current length is {{slug.errors.minlength.actualLength}}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="default-form-field">
+      <input required minlength="3" maxlength="125" matInput type="text" name="image" [(ngModel)]='model.image'
+        #image='ngModel'>
+      <mat-error *ngIf='image.invalid && image.errors.required'>image is required</mat-error>
+      <mat-error *ngIf='image.invalid && image.errors.minlength'>min length
+        {{image.errors.minlength.requiredLength}}. current length is {{image.errors.minlength.actualLength}}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="default-form-field">
+      <input required minlength="25" maxlength="255" matInput type="text" name="description"
+        [(ngModel)]='model.description' #description='ngModel'>
+      <mat-error *ngIf='description.invalid && description.errors.required'>description is
+        required</mat-error>
+      <mat-error *ngIf='description.invalid && description.errors.minlength'>min length
+        {{description.errors.minlength.requiredLength}}. current length is {{description.errors.minlength.actualLength}}
+      </mat-error>
+    </mat-form-field>
+
+    <div class="default-form-field">
+      <ckeditor [editor]="Editor" [(ngModel)]='model.text' #text='ngModel' minlength='50' required
+        [ngModelOptions]="{standalone: true}" [data]="model.text">
+      </ckeditor>
+      <div *ngIf='isSubmited && text.errors' class="mat-form-field-subscript-wrapper">
+        <mat-error *ngIf='text.errors && text.errors.minlength'>min length must be
+          {{text.errors.minlength.requiredLength}}. Actual
+          length is {{text.errors.minlength.actualLength}}</mat-error>
+        <mat-error *ngIf='text.errors && text.errors.required'>text is required
+        </mat-error>
+      </div>
+    </div>
+    <div class="text-center">
+      <button mat-raised-button color="primary">Submit</button>
+    </div>
+  </form>
+</div>

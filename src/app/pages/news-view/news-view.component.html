@@ -1,0 +1,17 @@
+<app-layout>
+  <ng-container *ngIf='news;else isLoading'>
+    <h1 class="news-title">
+      {{news.title}}
+    </h1>
+    <div class="news-details">
+      <div class="news-date">
+        Created at: {{news.createdAt | date:'dd.mm.yyyy h:mm'}}
+      </div>
+    </div>
+    <div class="news-text">
+      <img [src]="news.image" alt="news.title" class="news-image">
+      <div [innerHtml]='news.text | safe:"html"'></div>
+    </div>
+  </ng-container>
+  <ng-template #isLoading>news is loading...</ng-template>
+</app-layout>

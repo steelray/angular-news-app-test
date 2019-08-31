@@ -1,0 +1,10 @@
+@import '~compass-mixins/lib/compass/css3';
+
+:host {
+  .welcome-page {
+    height: 500px;
+    @include display-flex;
+    @include justify-content(center);
+    @include flex-direction(column);
+  }
+}
