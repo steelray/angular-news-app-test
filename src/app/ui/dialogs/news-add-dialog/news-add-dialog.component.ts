@@ -80,8 +80,7 @@ export class NewsAddDialogComponent implements OnInit {
     }
   }
 
-  onSubmit(e) {
-    e.preventDefault();
+  onSubmit() {
     this.isSubmited = true;
     if (this.form.invalid) {
       return false;

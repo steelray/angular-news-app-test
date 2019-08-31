@@ -9,6 +9,7 @@ import { INews } from 'src/app/core/interfaces/news.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NewsEditDialogComponent } from 'src/app/ui/dialogs/news-edit-dialog/news-edit-dialog.component';
 import { NewsDeleteDialogComponent } from 'src/app/ui/dialogs/news-delete-dialog/news-delete-dialog.component';
+import { Profile } from 'src/app/core/models/profile.model';
 
 @Component({
   selector: 'app-news',
@@ -20,7 +21,7 @@ export class NewsComponent implements OnInit {
   topItems$: Observable<INews[]>;
   totalCount = 0;
   dialogWidth = '850px';
-  protected isAuthed = this.authService.profile || false;
+  protected isAuthed: Profile | null = null;
   constructor(
     private newsService: NewsService,
     private authService: AuthService,
@@ -29,6 +30,7 @@ export class NewsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.authService.profile.subscribe(res => (this.isAuthed = res));
     this.loadData();
   }
 

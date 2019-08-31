@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { Profile } from 'src/app/core/models/profile.model';
 @Component({
   selector: 'app-login-dialog',
   templateUrl: './login-dialog.component.html',
@@ -36,17 +35,15 @@ export class LoginDialogComponent implements OnInit {
       return;
     }
     const { username, password } = this.form.value;
-    const profile: Profile | boolean = this.authService.login(
-      username,
-      password
-    );
-    if (profile) {
-      this.dialogRef.close(profile);
-    } else {
-      this.password.markAsTouched();
-      this.password.setErrors({ invalidData: true });
-      // console.log(this.username, this.password);
-    }
+    this.authService.login(username, password).subscribe(res => {
+      if (res) {
+        this.dialogRef.close();
+      } else {
+        this.password.markAsTouched();
+        this.password.setErrors({ invalidData: true });
+        // console.log(this.username, this.password);
+      }
+    });
   }
   onCancel(e: any = null) {
     e.preventDefault();

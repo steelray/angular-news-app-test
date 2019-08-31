@@ -9,7 +9,7 @@
   </li>
 </ul>
 <div class="mat-dialog-content">
-  <form [formGroup]="form" (submit)="onSubmit($event)">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <mat-form-field class="default-form-field">
       <input matInput formControlName="title" (blur)='setSlug(title.value)' placeholder="Title" type="text" />
       <mat-error *ngIf='title.errors && title.errors.minlength'>min length must be

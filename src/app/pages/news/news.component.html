@@ -1,5 +1,5 @@
 <app-layout>
-  <p class="text-right">
+  <p class="text-right" *ngIf='isAuthed'>
     <button (click)='onAddNews()' mat-raised-button color='primary'>Add news</button>
   </p>
   <div class="news">

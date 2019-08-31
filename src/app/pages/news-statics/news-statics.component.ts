@@ -55,7 +55,6 @@ export class NewsStaticsComponent implements OnInit {
         )
         .subscribe(data => {
           this.data = data;
-          console.log(this.data);
         });
     });
   }
