@@ -14,6 +14,10 @@ export class AuthGuardService implements CanActivate {
     // console.log(this.isAuthed);
     return this.authService.profile.pipe(
       map(res => {
+        this.router.navigate(['**'], {
+          queryParams: { code: 403 },
+          skipLocationChange: true
+        });
         return res ? true : false;
       })
     );
